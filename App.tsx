@@ -1,8 +1,8 @@
 import React, {useMemo} from 'react';
-import {View, StyleSheet, Text, SafeAreaView} from 'react-native';
+import {View, StyleSheet, Text, SafeAreaView, FlatList} from 'react-native';
+import Animated from 'react-native-reanimated';
 
 import SwipeableDelete from './SwipeableDelete.component';
-import {FlatList} from 'react-native-gesture-handler';
 
 const s = StyleSheet.create({
   container: {
@@ -25,7 +25,7 @@ const App = () => {
 
   const list = useMemo(() => {
     return (
-      <FlatList
+      <Animated.FlatList
         data={Array(10)}
         ItemSeparatorComponent={() => <View style={{height: 2}} />}
         renderItem={() => {

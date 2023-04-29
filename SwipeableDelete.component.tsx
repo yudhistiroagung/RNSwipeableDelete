@@ -85,8 +85,8 @@ const SwipeableDelete: React.FC<Props> = ({
           <Text>Delete</Text>
         </TouchableOpacity>
       </Animated.View>
-
-      <PanGestureHandler onGestureEvent={gestureHandler}>
+      {/*  set min distanve to tell pan gesture cacthes the gesture event after a given distance */}
+      <PanGestureHandler onGestureEvent={gestureHandler} minDist={20}>
         <Animated.View style={[style, s.wrapper, rStyle]}>
           {children}
         </Animated.View>
