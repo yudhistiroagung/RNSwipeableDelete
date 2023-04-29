@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import {View, StyleSheet, Text, SafeAreaView} from 'react-native';
 
 import SwipeableDelete from './SwipeableDelete.component';
+import {FlatList} from 'react-native-gesture-handler';
 
 const s = StyleSheet.create({
   container: {
@@ -22,13 +23,23 @@ const App = () => {
     console.log('DELETED');
   };
 
-  return (
-    <SafeAreaView style={s.container}>
-      <SwipeableDelete style={s.item} onPress={onPress}>
-        <Text>SWIPE ME to DELETE</Text>
-      </SwipeableDelete>
-    </SafeAreaView>
-  );
+  const list = useMemo(() => {
+    return (
+      <FlatList
+        data={Array(10)}
+        ItemSeparatorComponent={() => <View style={{height: 2}} />}
+        renderItem={() => {
+          return (
+            <SwipeableDelete style={s.item} onPress={onPress}>
+              <Text>SWIPE ME to DELETE</Text>
+            </SwipeableDelete>
+          );
+        }}
+      />
+    );
+  }, []);
+
+  return <SafeAreaView style={s.container}>{list}</SafeAreaView>;
 };
 
 export default App;
